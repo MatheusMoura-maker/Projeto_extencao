@@ -2,8 +2,8 @@
 require_once 'conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stmt = $pdo->prepare("UPDATE usuarios SET nome=?, usuario=?, email=?, senha=? WHERE id=?");
-    $stmt->execute([$_POST['nome'], $_POST['usuario'], $_POST['email'], $_POST['senha'], $_POST['id']]);
+    $stmt = $pdo->prepare("UPDATE usuarios SET nome=?, sobrenome=?, email=?, senha=? WHERE id=?");
+    $stmt->execute([$_POST['nome'], $_POST['sobrenome'], $_POST['email'], $_POST['senha'], $_POST['id']]);
     header("Location: show_user.php?msg=sucesso");
     exit;
 }
@@ -17,11 +17,11 @@ include_once 'header.php';
 ?>
 <h2>Editar Usuários</h2>
 <form method="POST">
-    <input type="hidden" name="id" value="<?= $u['id'] ?>">
+    <!-- <input type="hidden" name="id" value="<?= $u['id'] ?>"> -->
     <input type="text" name="nome" value="<?= $u['nome'] ?>" required><br><br>
-    <input type="text" name="usuario" value="<?= $u['usuario'] ?>" required><br><br>
+    <input type="text" name="sobrenome" value="<?= $u['sobrenome'] ?>" required><br><br>
     <input type="email" name="email" value="<?= $u['email'] ?>" required><br><br>
     <input type="password" name="senha" value="<?= $u['senha'] ?>" required><br><br>
     <button type="submit">Atualizar</button>
 </form>
-<?php include_once 'footer.php'; ?>u
+<?php include_once 'footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'conexao.php';
-$usuarios = $pdo->query("SELECT * FROM carros ORDER BY nome")->fetchAll();
+$carro = $pdo->query("SELECT * FROM carros ORDER BY nome")->fetchAll();
 
 // Sistema de Mensagens
 $status = $_GET['msg'] ?? '';
@@ -26,9 +26,9 @@ include_once 'header.php';
     <tr>
         <th>Nome</th><th>Montadora</th><th>Ano</th><th>Placa</th><th>Ações</th>
     </tr>
-    <?php foreach($usuarios as $u): ?>
+    <?php foreach($carro as $c): ?>
     <tr>
-        <td><?= $c['id'] ?></td>
+        <!-- <td><?= $c['id'] ?></td> -->
         <td><?= $c['nome'] ?></td>
         <td><?= $c['montadora'] ?></td>
         <td><?= $c['ano'] ?></td>

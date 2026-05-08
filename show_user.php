@@ -25,13 +25,13 @@ include_once 'header.php';
 
 <table border="1" width="100%" cellpadding="10" style="border-collapse: collapse;">
     <tr>
-        <th>ID</th><th>Nome</th><th>Sobrenome</th><th>E-mail</th><th>Ações</th>
+        <th>Nome</th><th>Sobrenome</th><th>E-mail</th><th>Ações</th>
     </tr>
     <?php foreach($usuarios as $u): ?>
     <tr>
-        <td><?= $u['id'] ?></td>
+        <!-- <td><?= $u['id'] ?></td> -->
         <td><?= htmlspecialchars($u['nome']) ?></td>
-        <td><?= htmlspecialchars($u['usuario']) ?></td>
+        <td><?= htmlspecialchars($u['sobrenome']) ?></td>
         <td><?=$u['email'] ?></td>
         <td>
             <a href="altera_user.php?id=<?= $u['id'] ?>">Editar</a> |
