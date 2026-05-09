@@ -14,7 +14,7 @@ require_once 'conexao.php';
 
 echo "Login Realizado!<br><br>Bem-vindo";
 echo '<a class="botao usuarios" href="show_user.php">Consultar usuarios</a>';
-echo '<a class="botao carros" href="show_car.php">Consutar Carro</a>';
+echo '<a class="botao carros" href="show_car.php">Consutar Carros</a>';
 
 include_once 'footer.php';
 ?>

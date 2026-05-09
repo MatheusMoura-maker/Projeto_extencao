@@ -1,6 +1,6 @@
 <?php
 require_once 'conexao.php';
-$carro = $pdo->query("SELECT * FROM carros ORDER BY nome")->fetchAll();
+$carro = $pdo->query("SELECT * FROM carros ORDER BY id")->fetchAll();
 
 // Sistema de Mensagens
 $status = $_GET['msg'] ?? '';
@@ -23,7 +23,7 @@ include_once 'header.php';
 <?php endif; ?>
 
 <table border="1" width="100%" cellpadding="10" style="border-collapse: collapse;">
-    <tr>
+    <tr>    
         <th>Nome</th><th>Montadora</th><th>Ano</th><th>Placa</th><th>Ações</th>
     </tr>
     <?php foreach($carro as $c): ?>
@@ -36,7 +36,8 @@ include_once 'header.php';
         <td>
             <a href="altera_car.php?id=<?= $c['id'] ?>">Editar</a> |
             <form action="exclui.php" method="POST" style="display:inline" onsubmit="return confirm('Excluir?')">
-                <button type="submit" name="id" value="<?= $u['id'] ?>">Excluir</button>
+                <button type="submit" name="id" value="<?= $c['id'] ?>">Excluir</button>
+                <input type="hidden" name="tabela" value="carros">
             </form>
         </td>
     </tr>

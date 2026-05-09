@@ -3,7 +3,7 @@ require_once 'conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("UPDATE carros SET nome=?, montadora=?, ano=?, placa=? WHERE id=?");
-    $stmt->execute([$_POST['nome'], $_POST['montadora'], $_POST['ano'], $_POST['placa'], $_POST['id']]);
+    $stmt->execute([$_POST['nome'], $_POST['montadora'], $_POST['ano'], $_POST['placa'],$_POST['id']]);
     header("Location: show_car.php?msg=sucesso");
     exit;
 }
@@ -15,9 +15,9 @@ $u = $stmt->fetch();
 
 include_once 'header.php';
 ?>
-<h2>Editar Usuários</h2>
+<h2>Editar Carros</h2>
 <form method="POST">
-    <!-- <input type="hidden" name="id" value="<?= $u['id'] ?>"> -->
+    <input type="hidden" name="id" value="<?= $u['id'] ?>" required><br><br>
     <input type="text" name="nome" value="<?= $u['nome'] ?>" required><br><br>
     <input type="text" name="montadora" value="<?= $u['montadora'] ?>" required><br><br>
     <input type="text" name="ano" value="<?= $u['ano'] ?>" required><br><br>
