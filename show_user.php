@@ -1,7 +1,13 @@
-<?php    
 
+<body>
+<?php
 require_once 'conexao.php';
-$usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY id")->fetchAll();
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: telalogin.php");
+    exit;
+}
+$usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll();
 
 // Sistema de Mensagens
 $status = $_GET['msg'] ?? '';
@@ -25,11 +31,11 @@ include_once 'header.php';
 
 <table border="1" width="100%" cellpadding="10" style="border-collapse: collapse;">
     <tr>
-        <th>Nome</th><th>Sobrenome</th><th>E-mail</th><th>Ações</th>
+        <th>ID</th><th>Nome</th><th>Sobrenome</th><th>E-mail</th><th>Ações</th>
     </tr>
     <?php foreach($usuarios as $u): ?>
     <tr>
-        <!-- <td><?= $u['id'] ?></td> -->
+        <td><?= $u['id'] ?></td>
         <td><?= htmlspecialchars($u['nome']) ?></td>
         <td><?= htmlspecialchars($u['sobrenome']) ?></td>
         <td><?=$u['email'] ?></td>
@@ -44,3 +50,4 @@ include_once 'header.php';
 </table>
 
 <?php include_once 'footer.php'; ?>
+</body>

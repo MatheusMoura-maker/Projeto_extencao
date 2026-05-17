@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>UniCar - Login</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<link rel="stylesheet" href="style.css">
 
 <body>
     <main>
@@ -20,13 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':email', $email);
     $stmt->execute();
 
-    $usuario = $stmt->fetch();
+     $usuario = $stmt->fetch();
 
-    if ($usuario && $senha === $usuario['senha']) {
-
-        $_SESSION['usuario'] = $usuario['email'];
-        $_SESSION['tipo'] = $usuario['tipo'];
-
+    if ($usuario && password_verify($senha, $usuario['senha'])) {
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['usuario_nome'] = $usuario['nome'];
+        $_SESSION['usuario_tipo'] = $usuario['tipo'];
         header("Location: home.php");
         exit;
         }  
@@ -40,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-<h1 style="color: black;">UniCar</h1>
+<h1 style="color:green";>UniCar</h1>
         <form method="post" > 
         <div class="campo">
             <label for="email">Email</label>

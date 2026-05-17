@@ -1,6 +1,11 @@
 <?php
 require_once 'conexao.php';
-$carro = $pdo->query("SELECT * FROM carros ORDER BY id")->fetchAll();
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: telalogin.php");
+    exit;
+}
+$carros = $pdo->query("SELECT * FROM carros ORDER BY nome")->fetchAll();
 
 // Sistema de Mensagens
 $status = $_GET['msg'] ?? '';
@@ -23,12 +28,12 @@ include_once 'header.php';
 <?php endif; ?>
 
 <table border="1" width="100%" cellpadding="10" style="border-collapse: collapse;">
-    <tr>    
-        <th>Nome</th><th>Montadora</th><th>Ano</th><th>Placa</th><th>Ações</th>
-    </tr>
-    <?php foreach($carro as $c): ?>
     <tr>
-        <!-- <td><?= $c['id'] ?></td> -->
+        <th>ID</th><th>Nome</th><th>Montadora</th><th>Ano</th><th>Placa</th><th>Ações</th>
+    </tr>
+    <?php foreach($carros as $c): ?>
+    <tr>
+        <td><?= $c['id'] ?></td>
         <td><?= $c['nome'] ?></td>
         <td><?= $c['montadora'] ?></td>
         <td><?= $c['ano'] ?></td>

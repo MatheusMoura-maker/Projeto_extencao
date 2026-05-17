@@ -1,5 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>UniCar - Login</title>
+</head>
+<body>
 <?php
 require_once 'conexao.php';
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: telalogin.php");
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("UPDATE carros SET nome=?, montadora=?, ano=?, placa=? WHERE id=?");
@@ -25,3 +37,4 @@ include_once 'header.php';
     <button type="submit">Atualizar</button>
 </form>
 <?php include_once 'footer.php'; ?>
+</body>
